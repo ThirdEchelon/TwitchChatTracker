@@ -144,6 +144,11 @@ SOFTWARE. -->
                         $req->execute(["%".$_POST['date']."%", "%".$_POST['time']."%", "%".$_POST['user']."%", "%".$_POST['channel']."%"]);
                         $request = TRUE;
                     }
+                    else{
+                        $req = $bdd->prepare("SELECT * FROM data WHERE date LIKE ? ORDER BY id DESC");
+                        $req->execute(["%".date("Y-m-d")."%"]);
+                        $request = TRUE;
+                    }
                     if ($request) {
 
                         while ($data = $req->fetch())
